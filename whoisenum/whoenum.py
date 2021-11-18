@@ -27,10 +27,10 @@ def read_data(domain, retries:int):
                 break
 
         except PywhoisError:
-            sys.stdout.write(f"Not found {domain} - retry {str(retry_num)}\n")
+            sys.stderr.write(f"Not found {domain} - retry {str(retry_num)}\n")
 
         except Exception as e:
-            sys.stderr.write(str(e) + "\n")
+            sys.stderr.write(f"Error {domain} : {str(e)}]n")
 
         finally:
             retry_num += 1
