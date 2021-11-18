@@ -1,0 +1,2 @@
+include whoisenum/whois/data/public_suffix_list.dat
+include LICENSE.txt README.md
