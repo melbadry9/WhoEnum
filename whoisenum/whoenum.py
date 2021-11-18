@@ -1,7 +1,8 @@
 import sys
 import argparse
 from itertools import repeat
-from whoisenum.whois import whois
+from whoisenum.whois import whois 
+from whoisenum.whois.parser import PywhoisError
 from concurrent.futures import ThreadPoolExecutor
 
 
@@ -18,15 +19,21 @@ def args():
 
 def read_data(domain, retries:int):
     retry_num = 0
-    while True and retry_num < retries:
+    while retry_num < retries:
         try:
             data = whois(domain)
             if data["domain_name"] != None:    
                 sys.stdout.write(str(data) + "\n")
                 break
-            retry_num = retry_num + 1
+
+        except PywhoisError:
+            sys.stdout.write(f"Not found {domain} - retry {str(retry_num)}\n")
+
         except Exception as e:
             sys.stderr.write(str(e) + "\n")
+
+        finally:
+            retry_num += 1
 
 def main():
     parser = args()
