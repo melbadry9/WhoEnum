@@ -1133,6 +1133,7 @@ class WhoisBe(WhoisEntry):
     """Whois parser for .be domains
     """
     regex = {
+        'domain_name': r'Domain: *(.+)',
         'name': r'Name: *(.+)',
         'org': r'Organisation: *(.+)',
         'phone': r'Phone: *(.+)',

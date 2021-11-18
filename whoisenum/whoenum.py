@@ -30,7 +30,7 @@ def read_data(domain, retries:int):
             sys.stderr.write(f"Not found {domain} - retry {str(retry_num)}\n")
 
         except Exception as e:
-            sys.stderr.write(f"Error {domain} : {str(e)}]n")
+            sys.stderr.write(f"Error {domain} : {str(e)}\n")
 
         finally:
             retry_num += 1
