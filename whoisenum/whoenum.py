@@ -22,7 +22,7 @@ def read_data(domain, retries:int):
     while retry_num < retries:
         try:
             data = whois(domain)
-            if data["domain_name"] != None:    
+            if data.get("domain_name"):    
                 sys.stdout.write(str(data) + "\n")
                 break
 
